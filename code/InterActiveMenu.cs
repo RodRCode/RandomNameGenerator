@@ -50,7 +50,6 @@ namespace RandomNameGenerator
                         done = true;
                         Console.ResetColor();
                         return (menu.SelectedIndex);
-                        break;
                     default:
                         break;
                 }
@@ -80,7 +79,6 @@ namespace RandomNameGenerator
                 case ConsoleKey.D9: selection = 8; break;
                 case ConsoleKey.D0: selection = 9; break;
                 default: return selection;
-                    break;
             }
 
             if (selection > countOfMenuItems -1)
