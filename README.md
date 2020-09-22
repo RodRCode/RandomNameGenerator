@@ -5,4 +5,4 @@ It uses last names from the 2010 US Census, and uses the names you are likely to
 
 The first names are from the Social Security Administration's list of top 1000 male and female names from 2018 (the most recent year available at the time the program was written.)
 
-You have to make sure the `.cvs` files (MaleFirstNames, FemaleFirstNames, LastNames) are located in the same directory as the .exe file.
+You have to make sure the `.cvs` files (`MaleFirstNames`, `FemaleFirstNames`, `LastNames`) are located in the same directory as the `.exe` file.
