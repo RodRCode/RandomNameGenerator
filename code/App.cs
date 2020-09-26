@@ -43,6 +43,7 @@ namespace RandomNameGenerator
         // Main logic hub of the program, stuff branches out from here
         private bool EventLoop()
         {
+            ConsoleMenuPainter.TextColor();
             bool finished = false;
             do
             {
@@ -89,6 +90,7 @@ namespace RandomNameGenerator
 
         private void GenerateMaleAndFemaleNames()
         {
+            ConsoleMenuPainter.TextColor();
             Console.Write("How many would you like? ");
             int numberOfNames = Elicit.WholeNumber();
             Console.Write("Now, do you want middle names as well (y/n)? ");
@@ -122,12 +124,14 @@ namespace RandomNameGenerator
         {
             foreach (var name in outputListOfNames)
             {
+                ConsoleMenuPainter.TextColor();
                 Console.WriteLine(name);
             }
         }
 
         private void GenerateFemaleNames()
         {
+            ConsoleMenuPainter.TextColor();
             Console.Write("How many would you like? ");
             int numberOfNames = Elicit.WholeNumber();
             Console.Write("Now, do you want middle names as well (y/n)? ");
@@ -139,6 +143,7 @@ namespace RandomNameGenerator
 
         private void GenerateMaleNames()
         {
+            ConsoleMenuPainter.TextColor();
             Console.Write("How many would you like? ");
             int numberOfNames = Elicit.WholeNumber();
             Console.Write("Now, do you want middle names as well (y/n)? ");
@@ -151,6 +156,7 @@ namespace RandomNameGenerator
         // After the names have been generated, what does the user want to do with them?
         private void NowWhat()
         {
+            ConsoleMenuPainter.TextColor();
             bool finished = false;
             do
             {
