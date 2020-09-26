@@ -40,7 +40,11 @@ namespace RandomNameGenerator
 
                 var keyInfo = Console.ReadKey(true);
 
-                menu.SelectedIndex = AlternateInputSelection(keyInfo, menu.SelectedIndex, countOfMenuItems);
+                menu.SelectedIndex = AlternateInputSelection(ref done, keyInfo, menu.SelectedIndex, countOfMenuItems);
+                if (done)
+                {
+                    return menu.SelectedIndex;
+                }
 
                 switch (keyInfo.Key)
                 {
@@ -50,7 +54,6 @@ namespace RandomNameGenerator
                         done = true;
                         Console.ResetColor();
                         return (menu.SelectedIndex);
-                        break;
                     default:
                         break;
                 }
@@ -63,7 +66,7 @@ namespace RandomNameGenerator
             return (9);
         }
 
-        private static int AlternateInputSelection(ConsoleKeyInfo keyInfo, int selectedIndex, int countOfMenuItems)
+        private static int AlternateInputSelection(ref bool done, ConsoleKeyInfo keyInfo, int selectedIndex, int countOfMenuItems)
         {
             int selection = selectedIndex;
 
@@ -80,14 +83,14 @@ namespace RandomNameGenerator
                 case ConsoleKey.D9: selection = 8; break;
                 case ConsoleKey.D0: selection = 9; break;
                 default: return selection;
-                    break;
             }
 
-            if (selection > countOfMenuItems -1)
+            if (selection > countOfMenuItems - 1)
             {
                 selection = selectedIndex;
             }
 
+            done = true;
             return selection;
         }
     }

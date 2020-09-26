@@ -14,7 +14,7 @@ namespace RandomNameGenerator
         }
 
         // Main entry point for the application
-        public void Run()  
+        public void Run()
         {
             FileStuff.ReadFiles(firstNamesFemale, firstNamesMale, lastNames);
 
@@ -91,8 +91,31 @@ namespace RandomNameGenerator
         {
             Console.Write("How many would you like? ");
             int numberOfNames = Elicit.WholeNumber();
-            outputListOfNames = Rand.MaleAndFemaleNames(numberOfNames, firstNamesMale, firstNamesFemale, lastNames, outputListOfNames);
+            Console.Write("Now, do you want middle names as well (y/n)? ");
+            bool middleNames;
+            middleNames = GetYesOrNoAnswer();
+
+            outputListOfNames = Rand.MaleAndFemaleNames(numberOfNames, firstNamesMale, firstNamesFemale, lastNames, outputListOfNames, middleNames);
             NowWhat();
+        }
+
+        private bool GetYesOrNoAnswer()
+        {
+            do
+            {
+                var answer = Console.ReadKey(true);
+                switch (answer.Key)
+                {
+                    case ConsoleKey.Y:
+                        Console.Write("y");
+                        return true;
+                    case ConsoleKey.N:
+                        Console.Write("n");
+                        return false;
+                    default:
+                        break;
+                }
+            } while (true);
         }
 
         private void PrintNames()
@@ -107,7 +130,10 @@ namespace RandomNameGenerator
         {
             Console.Write("How many would you like? ");
             int numberOfNames = Elicit.WholeNumber();
-            outputListOfNames = Rand.FemaleNames(numberOfNames, firstNamesFemale, lastNames, outputListOfNames);
+            Console.Write("Now, do you want middle names as well (y/n)? ");
+            bool middleNames;
+            middleNames = GetYesOrNoAnswer();
+            outputListOfNames = Rand.FemaleNames(numberOfNames, firstNamesFemale, lastNames, outputListOfNames, middleNames);
             NowWhat();
         }
 
@@ -115,7 +141,10 @@ namespace RandomNameGenerator
         {
             Console.Write("How many would you like? ");
             int numberOfNames = Elicit.WholeNumber();
-            outputListOfNames = Rand.MaleNames(numberOfNames, firstNamesMale, lastNames, outputListOfNames);
+            Console.Write("Now, do you want middle names as well (y/n)? ");
+            bool middleNames;
+            middleNames = GetYesOrNoAnswer();
+            outputListOfNames = Rand.MaleNames(numberOfNames, firstNamesMale, lastNames, outputListOfNames, middleNames);
             NowWhat();
         }
 
@@ -126,7 +155,7 @@ namespace RandomNameGenerator
             do
             {
                 Console.Clear();
-                Console.WriteLine($"OK, i've generated all {outputListOfNames.Count} names.");
+                Console.WriteLine($"OK, I've generated all {outputListOfNames.Count} names.");
                 Console.WriteLine("What would you like to do?\n");
                 int userChoice = Elicit.WhatNowMenu(0, 5); // the two digits are to place the menu on the x and y axis
 
