@@ -23,23 +23,6 @@ namespace RandomNameGenerator
             Console.ResetColor();
         }
 
-        //Sets up values to be put into the interactive menu
-        private int DetermineWhatUserWants()
-        {
-
-            Console.WriteLine("What would you like to do:");
-            Console.WriteLine("1) Generate male names");
-            Console.WriteLine("2) Generate female names");
-            Console.WriteLine("3) Generate male and female names");
-            Console.WriteLine("4) Generate male names");
-            Console.WriteLine("5) Quit");
-            Console.WriteLine();
-            Console.Write("Your choice: ");
-
-            int userChoice = Elicit.WholeNumber();
-            return userChoice;
-        }
-
         // Main logic hub of the program, stuff branches out from here
         private bool EventLoop()
         {
