@@ -56,49 +56,65 @@ namespace RandomNameGenerator
                 Output.Intro();
                 int userChoice = Menu.Selection(menuItems, 0, 12); // the two digits are to place the menu on the x and y axis
 
-                switch (userChoice)
+                if (userChoice == 3)
                 {
-                    case 0:
-                        Console.Clear();
-                        Console.WriteLine("Generate Male Names\n");
-                        GenerateMaleNames();
-                        break;
-                    case 1:
-                        Console.Clear();
-                        Console.WriteLine("Generate Female Names\n");
-                        GenerateFemaleNames();
-                        break;
-                    case 2:
-                        Console.Clear();
-                        Console.WriteLine("Generate Male and Female Names\n");
-                        GenerateMaleAndFemaleNames();
-                        break;
-                    case 3:
-                        Console.Clear();
-                        Console.WriteLine("Quit");
-                        finished = true;
-                        break;
-                    default:
-                        Console.Clear();
-                        Console.WriteLine("Default case");
-                        break;
+                    Console.Clear();
+                    Console.WriteLine("Quit");
+                    finished = true;
+                }
+                else
+                {
+                    GenerateNames(userChoice);
                 }
             } while (!finished);
 
             return finished;
         }
 
-        private void GenerateMaleAndFemaleNames()
+        private void GenerateNames(int userChoice)
         {
+            Console.Clear();
             ConsoleMenuPainter.TextColor();
+            int numberOfNames;
+            bool middleNames;
+
+            switch (userChoice)
+            {
+                case 0:
+                    Console.Clear();
+                    Console.WriteLine("Generate Male Names\n");
+                    (numberOfNames, middleNames) = GetNumberAndMiddleNameInput();
+                    outputListOfNames = Rand.ListOfNames(numberOfNames, firstNamesMale, lastNames, outputListOfNames, middleNames);
+                    NowWhat();
+                    break;
+                case 1:
+                    Console.Clear();
+                    Console.WriteLine("Generate Female Names\n");
+                    (numberOfNames, middleNames) = GetNumberAndMiddleNameInput();
+                    outputListOfNames = Rand.ListOfNames(numberOfNames, firstNamesFemale, lastNames, outputListOfNames, middleNames);
+                    NowWhat();
+                    break;
+                case 2:
+                    Console.Clear();
+                    Console.WriteLine("Generate Male and Female Names\n");
+                    (numberOfNames, middleNames) = GetNumberAndMiddleNameInput();
+                    outputListOfNames = Rand.MaleAndFemaleNames(numberOfNames, firstNamesMale, firstNamesFemale, lastNames, outputListOfNames, middleNames);
+                    NowWhat();
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Default case");
+                    break;
+            }
+        }
+
+        private (int, bool) GetNumberAndMiddleNameInput()
+        {
             Console.Write("How many would you like? ");
             int numberOfNames = Elicit.WholeNumber();
             Console.Write("Now, do you want middle names as well (y/n)? ");
-            bool middleNames;
-            middleNames = GetYesOrNoAnswer();
-
-            outputListOfNames = Rand.MaleAndFemaleNames(numberOfNames, firstNamesMale, firstNamesFemale, lastNames, outputListOfNames, middleNames);
-            NowWhat();
+            bool middleNames = GetYesOrNoAnswer();
+            return (numberOfNames, middleNames);
         }
 
         private bool GetYesOrNoAnswer()
@@ -127,30 +143,6 @@ namespace RandomNameGenerator
                 ConsoleMenuPainter.TextColor();
                 Console.WriteLine(name);
             }
-        }
-
-        private void GenerateFemaleNames()
-        {
-            ConsoleMenuPainter.TextColor();
-            Console.Write("How many would you like? ");
-            int numberOfNames = Elicit.WholeNumber();
-            Console.Write("Now, do you want middle names as well (y/n)? ");
-            bool middleNames;
-            middleNames = GetYesOrNoAnswer();
-            outputListOfNames = Rand.FemaleNames(numberOfNames, firstNamesFemale, lastNames, outputListOfNames, middleNames);
-            NowWhat();
-        }
-
-        private void GenerateMaleNames()
-        {
-            ConsoleMenuPainter.TextColor();
-            Console.Write("How many would you like? ");
-            int numberOfNames = Elicit.WholeNumber();
-            Console.Write("Now, do you want middle names as well (y/n)? ");
-            bool middleNames;
-            middleNames = GetYesOrNoAnswer();
-            outputListOfNames = Rand.MaleNames(numberOfNames, firstNamesMale, lastNames, outputListOfNames, middleNames);
-            NowWhat();
         }
 
         // After the names have been generated, what does the user want to do with them?

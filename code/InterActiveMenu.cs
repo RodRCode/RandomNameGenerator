@@ -18,12 +18,11 @@ namespace RandomNameGenerator
 
         public string SelectedOption => SelectedIndex != -1 ? Items[SelectedIndex] : null;
 
-
         public void MoveUp() => SelectedIndex = Math.Max(SelectedIndex - 1, 0);
 
         public void MoveDown() => SelectedIndex = Math.Min(SelectedIndex + 1, Items.Count - 1);
 
-        // Recieves a string array and x and y coordinates to create the interactive menu at the x and y coordinates
+        // Receives a string array and x and y coordinates to create the interactive menu at the x and y coordinates
         public static int Selection(string[] menuItems, int x, int y)
         {
             var menu = new Menu(menuItems);
